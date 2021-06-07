@@ -14,18 +14,18 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import java.io.IOException
 
-private val Context.dataStore by preferencesDataStore(name = DataStorePreferenceHelper.USER_PREFERENCES_NAME,
+private val Context.dataStore by preferencesDataStore(name = DataStorePreferenceHelper.APP_SETTINGS,
     produceMigrations = { context ->
         // Since we're migrating from SharedPreferences, add a migration based on the
         // SharedPreferences name
-        listOf(SharedPreferencesMigration(context, DataStorePreferenceHelper.USER_PREFERENCES_NAME))
+        listOf(SharedPreferencesMigration(context, DataStorePreferenceHelper.APP_SETTINGS))
     }
 )
 
 open class DataStorePreferenceHelper(private val context: Context, coroutineScope: CoroutineScope? = null) {
 
     companion object {
-        const val USER_PREFERENCES_NAME = "user_preferences"
+        const val APP_SETTINGS = "app_settings"
     }
 
     init {
@@ -55,7 +55,7 @@ open class DataStorePreferenceHelper(private val context: Context, coroutineScop
     }
 
     @Suppress("SameParameterValue")
-    protected fun <T> getSyncValue(key: Preferences.Key<T>, default: T): T {
+    fun <T> getSyncValue(key: Preferences.Key<T>, default: T): T {
         return runBlocking {
             context.dataStore.data.first()[key] ?: default
         }
