@@ -7,6 +7,7 @@ import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
@@ -22,19 +23,14 @@ private val Context.dataStore by preferencesDataStore(name = DataStorePreference
     }
 )
 
-open class DataStorePreferenceHelper(private val context: Context, coroutineScope: CoroutineScope? = null) {
+open class DataStorePreferenceHelper(private val context: Context) {
 
     companion object {
         const val APP_SETTINGS = "app_settings"
     }
 
-    init {
-        coroutineScope?.let { syncDataStore(it) }
-    }
-
-    @Suppress("MemberVisibilityCanBePrivate")
     fun syncDataStore(coroutineScope: CoroutineScope) {
-        coroutineScope.launch {
+        coroutineScope.launch(Dispatchers.IO) {
             context.dataStore.data.first()
         }
     }

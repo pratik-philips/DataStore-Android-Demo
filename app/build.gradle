@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-android-extensions'
+    id 'com.google.protobuf'
 }
 
 android {
@@ -33,6 +34,38 @@ android {
     }
 }
 
+protobuf {
+    protoc {
+        artifact = 'com.google.protobuf:protoc:3.0.0'
+    }
+    plugins {
+        javalite {
+            artifact = 'com.google.protobuf:protoc-gen-javalite:3.0.0'
+        }
+    }
+
+    // this is a task which wil generate classes for our proto files
+    generateProtoTasks {
+        all().each { task ->
+            task.builtins {
+                remove java
+            }
+            task.plugins {
+                javalite {}
+            }
+        }
+    }
+
+    sourceSets {
+        main.java.srcDirs +=  "${protobuf.generatedFilesBaseDir}/main/javalite"
+        main.java.srcDirs += "$projectDir/src/main/proto"
+    }
+
+    processResources {
+        exclude('**/*.proto')
+    }
+}
+
 dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -44,7 +77,8 @@ dependencies {
     implementation("androidx.datastore:datastore:1.0.0-beta01")
     //Datastore Preferences
     implementation("androidx.datastore:datastore-preferences:1.0.0-beta01")
-
+    //proto
+    implementation 'com.google.protobuf:protobuf-lite:3.0.0'
     //KTX
     implementation "androidx.core:core-ktx:1.5.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"

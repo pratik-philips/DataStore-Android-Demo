@@ -11,7 +11,7 @@
         android:testOnly="false"
         android:theme="@style/Theme.DataStoreTest">
         <activity
-            android:name="datastorehelper.TestActivity"
+            android:name="datastorehelper.TestDataStorePreferenceActivity"
             android:label="Data Store">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />

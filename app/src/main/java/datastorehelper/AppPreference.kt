@@ -25,12 +25,12 @@ class AppPreference(context: Context) : DataStorePreferenceHelper(context){
         return getValue(KEY_COUNTER, 0)
     }
 
-    fun getStoredCountry(): LiveData<String> {
-        return getValue(KEY_COUNTRY, "NA")
-    }
-
     fun isEnabled(): LiveData<Boolean> {
         return getValue(KEY_ENABLE, false)
+    }
+
+    suspend fun setEnable(enable: Boolean){
+        setValue(KEY_ENABLE, enable)
     }
 
     suspend fun incrementCounter() {
@@ -45,7 +45,7 @@ class AppPreference(context: Context) : DataStorePreferenceHelper(context){
         setValue(KEY_COUNTRY, country)
     }
 
-    fun getCountry(): String {
-        return getSyncValue(KEY_COUNTRY, "India")
+    fun getCountry(): LiveData<String> {
+        return getValue(KEY_COUNTRY, "")
     }
 }
