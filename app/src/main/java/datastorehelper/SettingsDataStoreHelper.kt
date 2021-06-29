@@ -21,6 +21,7 @@ val Context.settingsDataStore: DataStore<Settings> by dataStore(
 )
 
 class SettingsHelper(private val context: Context) {
+
     val getCounter: LiveData<Int> = context.settingsDataStore.data
         .map { settings ->
             // The exampleCounter property is generated from the proto schema.
@@ -32,6 +33,12 @@ class SettingsHelper(private val context: Context) {
     suspend fun incrementCounter(by: Int = 1) {
         context.settingsDataStore.updateData {
             it.toBuilder().setExampleCounter(it.exampleCounter + by).build()
+        }
+    }
+
+    suspend fun resetCounter() {
+        context.settingsDataStore.updateData {
+            it.toBuilder().setExampleCounter(0).build()
         }
     }
 

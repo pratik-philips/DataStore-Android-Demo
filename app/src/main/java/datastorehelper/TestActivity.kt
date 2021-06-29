@@ -1,0 +1,4 @@
+package datastorehelper
+
+class TestActivity {
+}
