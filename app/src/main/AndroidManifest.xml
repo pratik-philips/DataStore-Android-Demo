@@ -11,13 +11,15 @@
         android:testOnly="false"
         android:theme="@style/Theme.DataStoreTest">
         <activity
-            android:name="datastorehelper.TestDataStorePreferenceActivity"
+            android:name="datastorehelper.TestActivity"
             android:label="Data Store">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+        <activity android:name="datastorehelper.TestDataStorePreferenceActivity" />
+        <activity android:name="datastorehelper.TestProtoDataStoreActivity" />
     </application>
 
 </manifest>

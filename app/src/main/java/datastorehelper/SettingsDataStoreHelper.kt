@@ -8,8 +8,11 @@ import androidx.datastore.dataStore
 import androidx.datastore.preferences.protobuf.InvalidProtocolBufferException
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import java.io.InputStream
 import java.io.OutputStream
@@ -20,7 +23,7 @@ val Context.settingsDataStore: DataStore<Settings> by dataStore(
     serializer = SettingsSerializer
 )
 
-class SettingsHelper(private val context: Context) {
+class SettingsDataStoreHelper(private val context: Context) {
 
     val getCounter: LiveData<Int> = context.settingsDataStore.data
         .map { settings ->
@@ -46,7 +49,6 @@ class SettingsHelper(private val context: Context) {
         context.settingsDataStore.data.first()
     }
 }
-
 
 @Suppress("BlockingMethodInNonBlockingContext")
 object SettingsSerializer : Serializer<Settings> {
