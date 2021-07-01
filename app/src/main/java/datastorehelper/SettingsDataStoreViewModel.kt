@@ -30,8 +30,5 @@ class SettingsDataStoreViewModel(application: Application): AndroidViewModel(app
         }
     }
 
-    fun getCounterSync() {
-        settingsDataStoreHelper.getCounterSync()
-    }
-
+    fun getCounterSync() = settingsDataStoreHelper.getCounterSync()
 }
