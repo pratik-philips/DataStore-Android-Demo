@@ -31,4 +31,10 @@ class SettingsDataStoreViewModel(application: Application): AndroidViewModel(app
     }
 
     fun getCounterSync() = settingsDataStoreHelper.getCounterSync()
+
+    fun clearDataStore() {
+        viewModelScope.launch {
+            settingsDataStoreHelper.clearSettings()
+        }
+    }
 }

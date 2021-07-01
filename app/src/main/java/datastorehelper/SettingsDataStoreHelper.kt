@@ -19,15 +19,16 @@ import java.io.OutputStream
 
 
 val Context.settingsDataStore: DataStore<Settings> by dataStore(
-    fileName = "settings.pb",
+    fileName = "settings.proto",
     serializer = SettingsSerializer
 )
 
 class SettingsDataStoreHelper(private val context: Context) {
 
+    private val defaultValue = 0
+
     val getCounter: LiveData<Int> = context.settingsDataStore.data
         .map { settings ->
-            // The exampleCounter property is generated from the proto schema.
             settings.exampleCounter
         }.asLiveData()
 
@@ -41,12 +42,18 @@ class SettingsDataStoreHelper(private val context: Context) {
 
     suspend fun resetCounter() {
         context.settingsDataStore.updateData {
-            it.toBuilder().setExampleCounter(0).build()
+            it.toBuilder().setExampleCounter(defaultValue).build()
         }
     }
 
     suspend fun syncSettings() {
         context.settingsDataStore.data.first()
+    }
+
+    suspend fun clearSettings() {
+        context.settingsDataStore.updateData { settings ->
+            settings.toBuilder().clearExampleCounter().build()
+        }
     }
 }
 

@@ -36,6 +36,10 @@ class TestProtoDataStoreActivity: AppCompatActivity() {
         syncValueButton.setOnClickListener {
             updateSyncedValue()
         }
+
+        clearDataStore.setOnClickListener {
+            clearDataStore()
+        }
     }
 
     private fun updateText(value: Int) {
@@ -44,6 +48,10 @@ class TestProtoDataStoreActivity: AppCompatActivity() {
 
     private fun updateSyncedValue() {
         syncValue.text = viewModel.getCounterSync().toString()
+    }
+
+    private fun clearDataStore() {
+        viewModel.clearDataStore()
     }
 
 }
