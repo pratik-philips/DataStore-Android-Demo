@@ -34,4 +34,16 @@ class DataStorePreferenceViewModel(application: Application) : AndroidViewModel(
             dataStoreHelper.setCountry(country)
         }
     }
+
+    fun resetCounter() {
+        viewModelScope.launch(Dispatchers.IO) {
+            dataStoreHelper.resetCounter()
+        }
+    }
+
+    fun clearPreferences() {
+        viewModelScope.launch(Dispatchers.IO) {
+            dataStoreHelper.clearPreference()
+        }
+    }
 }

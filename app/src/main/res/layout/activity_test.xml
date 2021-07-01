@@ -28,6 +28,16 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         tools:ignore="HardcodedText" />
 
+    <Button
+        android:id="@+id/resetCounter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Reset Counter"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/incrementCounter"
+        tools:ignore="HardcodedText" />
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -46,7 +56,18 @@
         android:text="Enable Pref"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/setCountry" />
+        app:layout_constraintTop_toBottomOf="@+id/setString"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/clearPref"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Clear Pref"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/enablePref"
+        tools:ignore="HardcodedText" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -63,11 +84,12 @@
         app:layout_constraintGuide_end="92dp" />
 
     <Button
-        android:id="@+id/setCountry"
+        android:id="@+id/setString"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Set Country"
+        android:text="Set String"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/incrementCounter" />
+        app:layout_constraintTop_toBottomOf="@+id/resetCounter"
+        tools:ignore="HardcodedText" />
 </androidx.constraintlayout.widget.ConstraintLayout>

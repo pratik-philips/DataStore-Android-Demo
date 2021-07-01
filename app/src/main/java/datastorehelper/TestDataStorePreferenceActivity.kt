@@ -25,7 +25,8 @@ class TestDataStorePreferenceActivity : AppCompatActivity() {
         })
         viewModel.isEnabled.observe(this, {
             incrementCounter.isEnabled = it
-            setCountry.isEnabled = it
+            setString.isEnabled = it
+            resetCounter.isEnabled = it
             setEnableButtonText(it)
         })
 
@@ -37,7 +38,7 @@ class TestDataStorePreferenceActivity : AppCompatActivity() {
             viewModel.isEnabled.value?.let { it1 -> viewModel.toggle(!it1) }
         }
 
-        setCountry.setOnClickListener {
+        setString.setOnClickListener {
             val view = View.inflate(this, R.layout.view_edittext, null)
             val etCountry = view.findViewById<EditText>(R.id.etCountry)
             etCountry.setText(viewModel.countryLiveData.value ?: "")
@@ -51,6 +52,9 @@ class TestDataStorePreferenceActivity : AppCompatActivity() {
             dialog.setView(view)
             dialog.show()
         }
+
+        clearPref.setOnClickListener { viewModel.clearPreferences() }
+        resetCounter.setOnClickListener { viewModel.resetCounter() }
     }
 
     private fun setEnableButtonText(enable: Boolean) {

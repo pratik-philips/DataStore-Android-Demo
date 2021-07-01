@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.datastore.preferences.core.*
 import androidx.lifecycle.LiveData
 
-class AppPreference(context: Context) : DataStorePreferenceHelper(context){
+class AppPreference(context: Context) : DataStorePreferenceHelper(context) {
 
     companion object {
         val KEY_COUNTER = intPreferencesKey("example_counter")
@@ -29,7 +29,7 @@ class AppPreference(context: Context) : DataStorePreferenceHelper(context){
         return getValue(KEY_ENABLE, false)
     }
 
-    suspend fun setEnable(enable: Boolean){
+    suspend fun setEnable(enable: Boolean) {
         setValue(KEY_ENABLE, enable)
     }
 
@@ -47,5 +47,9 @@ class AppPreference(context: Context) : DataStorePreferenceHelper(context){
 
     fun getCountry(): LiveData<String> {
         return getValue(KEY_COUNTRY, "")
+    }
+
+    suspend fun resetCounter() {
+        remove(KEY_COUNTER)
     }
 }

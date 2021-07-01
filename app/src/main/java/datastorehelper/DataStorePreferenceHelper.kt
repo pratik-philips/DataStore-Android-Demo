@@ -63,6 +63,16 @@ open class DataStorePreferenceHelper(private val context: Context) {
         }
     }
 
+    suspend fun <T> remove(key: Preferences.Key<T>) {
+        context.dataStore.edit { settings ->
+            settings.remove(key)
+        }
+    }
+
+    suspend fun clearPreference() {
+        context.dataStore.edit { settings -> settings.clear() }
+    }
+
     suspend fun incrementValue(key: Preferences.Key<Int>, by: Int = 1) {
         context.dataStore.edit { settings ->
             val currentValue = settings[key] ?: 0
