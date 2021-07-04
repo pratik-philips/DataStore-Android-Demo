@@ -29,4 +29,15 @@
         app:layout_constraintTop_toBottomOf="@+id/start_preference_storage"
         tools:ignore="HardcodedText" />
 
+    <Button
+        android:id="@+id/start_proto_data_store_with_user_data"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="PROTO DATA STORE WITH USER DATA"
+        app:layout_constraintEnd_toEndOf="@+id/start_preference_storage"
+        app:layout_constraintStart_toStartOf="@+id/start_proto_data_store"
+        app:layout_constraintTop_toBottomOf="@id/start_proto_data_store"
+        tools:ignore="HardcodedText" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -32,11 +32,42 @@ class SettingsDataStoreHelper(private val context: Context) {
             settings.exampleCounter
         }.asLiveData()
 
+    val getUserName: LiveData<String> = context.settingsDataStore.data.
+    map { settings ->
+        settings.userName
+    }.asLiveData()
+
+    val getPreferredUserName: LiveData<String> = context.settingsDataStore.data.
+    map { settings ->
+        settings.preferredName
+    }.asLiveData()
+
+    val getUserMailId: LiveData<String> = context.settingsDataStore.data.
+    map { settings ->
+        settings.mailId
+    }.asLiveData()
+
+    val getIsUserVerified: LiveData<Boolean> = context.settingsDataStore.data.
+    map { settings ->
+        settings.isUserVerified
+    }.asLiveData()
+
     fun getCounterSync() = runBlocking { context.settingsDataStore.data.first().exampleCounter }
 
     suspend fun incrementCounter(by: Int = 1) {
         context.settingsDataStore.updateData {
             it.toBuilder().setExampleCounter(it.exampleCounter + by).build()
+        }
+    }
+
+    suspend fun updateUserData(data: UserData) {
+        context.settingsDataStore.updateData {
+            with(it.toBuilder()) {
+                setUserName(data.userName).build()
+                setPreferredName(data.userPreferredName).build()
+                setMailId(data.mailId).build()
+                setIsUserVerified(data.isUserVerified).build()
+            }
         }
     }
 
@@ -53,6 +84,10 @@ class SettingsDataStoreHelper(private val context: Context) {
     suspend fun clearSettings() {
         context.settingsDataStore.updateData { settings ->
             settings.toBuilder().clearExampleCounter().build()
+            settings.toBuilder().clearUserName().build()
+            settings.toBuilder().clearPreferredName().build()
+            settings.toBuilder().clearMailId().build()
+            settings.toBuilder().clearIsUserVerified().build()
         }
     }
 }

@@ -19,6 +19,10 @@ class TestActivity : AppCompatActivity() {
         start_proto_data_store.setOnClickListener {
             startActivity(Intent(this, TestProtoDataStoreActivity::class.java))
         }
+
+        start_proto_data_store_with_user_data.setOnClickListener {
+            startActivity(Intent(this, TestProtoDataStoreUserData::class.java))
+        }
     }
 
 }

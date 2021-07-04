@@ -20,6 +20,7 @@
         </activity>
         <activity android:name="datastorehelper.TestDataStorePreferenceActivity" />
         <activity android:name="datastorehelper.TestProtoDataStoreActivity" />
+        <activity android:name="datastorehelper.TestProtoDataStoreUserData" />
     </application>
 
 </manifest>

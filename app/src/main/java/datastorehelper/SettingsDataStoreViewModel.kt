@@ -11,6 +11,10 @@ class SettingsDataStoreViewModel(application: Application): AndroidViewModel(app
 
     private val settingsDataStoreHelper: SettingsDataStoreHelper by lazy { SettingsDataStoreHelper(application) }
     val counterLiveData: LiveData<Int> by lazy { settingsDataStoreHelper.getCounter }
+    val userName: LiveData<String> by lazy {settingsDataStoreHelper.getUserName}
+    val preferredName: LiveData<String> by lazy {settingsDataStoreHelper.getPreferredUserName}
+    val isUserVerified: LiveData<Boolean> by lazy {settingsDataStoreHelper.getIsUserVerified}
+    val mailID: LiveData<String> by lazy {settingsDataStoreHelper.getUserMailId}
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
@@ -27,6 +31,12 @@ class SettingsDataStoreViewModel(application: Application): AndroidViewModel(app
     fun resetCounter() {
         viewModelScope.launch {
             settingsDataStoreHelper.resetCounter()
+        }
+    }
+
+    fun updateUserData(data: UserData) {
+        viewModelScope.launch {
+            settingsDataStoreHelper.updateUserData(data)
         }
     }
 

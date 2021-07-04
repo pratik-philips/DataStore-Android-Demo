@@ -5,4 +5,8 @@ option java_multiple_files = true;
 
 message Settings {
   int32 example_counter = 1;
+  string userName = 2;
+  string mailId = 3;
+  string preferredName = 4;
+  bool isUserVerified = 6;
 }
