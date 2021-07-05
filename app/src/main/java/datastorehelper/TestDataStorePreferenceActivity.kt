@@ -20,8 +20,8 @@ class TestDataStorePreferenceActivity : AppCompatActivity() {
         viewModel.counterLiveData.observe(this, {
             setCounter(it)
         })
-        viewModel.countryLiveData.observe(this, {
-            setCountry(it)
+        viewModel.stringPrefLiveData.observe(this, {
+            setStringPref(it)
         })
         viewModel.isEnabled.observe(this, {
             incrementCounter.isEnabled = it
@@ -40,13 +40,13 @@ class TestDataStorePreferenceActivity : AppCompatActivity() {
 
         setString.setOnClickListener {
             val view = View.inflate(this, R.layout.view_edittext, null)
-            val etCountry = view.findViewById<EditText>(R.id.etCountry)
-            etCountry.setText(viewModel.countryLiveData.value ?: "")
+            val etStringPref = view.findViewById<EditText>(R.id.etString)
+            etStringPref.setText(viewModel.stringPrefLiveData.value ?: "")
 
-            val dialog = AlertDialog.Builder(this).setTitle("Set Country").setPositiveButton(
+            val dialog = AlertDialog.Builder(this).setTitle("Set String").setPositiveButton(
                 "Save"
             ) { _, _ ->
-                viewModel.storeCountry(etCountry.text.toString().trim())
+                viewModel.storeStringPref(etStringPref.text.toString().trim())
             }.setNegativeButton("Cancel") { _, _ -> }.create()
 
             dialog.setView(view)
@@ -67,7 +67,7 @@ class TestDataStorePreferenceActivity : AppCompatActivity() {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun setCountry(country: String) {
-        textView2.text = "String: $country"
+    private fun setStringPref(strPref: String) {
+        textView2.text = "String: $strPref"
     }
 }

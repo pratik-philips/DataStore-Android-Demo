@@ -8,7 +8,7 @@ class AppPreference(context: Context) : DataStorePreferenceHelper(context) {
 
     companion object {
         val KEY_COUNTER = intPreferencesKey("example_counter")
-        val KEY_COUNTRY = stringPreferencesKey("key_country")
+        val KEY_STRING_PREF = stringPreferencesKey("key_string_pref")
         val KEY_ENABLE = booleanPreferencesKey("key_enable")
 
         /**
@@ -41,12 +41,12 @@ class AppPreference(context: Context) : DataStorePreferenceHelper(context) {
         setValue(KEY_COUNTER, value)
     }
 
-    suspend fun setCountry(country: String) {
-        setValue(KEY_COUNTRY, country)
+    suspend fun setStringPref(strPref: String) {
+        setValue(KEY_STRING_PREF, strPref)
     }
 
-    fun getCountry(): LiveData<String> {
-        return getValue(KEY_COUNTRY, "")
+    fun getStringPref(): LiveData<String> {
+        return getValue(KEY_STRING_PREF, "")
     }
 
     suspend fun resetCounter() {
