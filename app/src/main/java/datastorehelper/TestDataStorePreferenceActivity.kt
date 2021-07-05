@@ -68,6 +68,6 @@ class TestDataStorePreferenceActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun setCountry(country: String) {
-        textView2.text = "Country: $country"
+        textView2.text = "String: $country"
     }
 }
